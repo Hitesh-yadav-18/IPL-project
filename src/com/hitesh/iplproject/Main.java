@@ -54,11 +54,11 @@ public class Main {
         HashMap<Integer, Match> matches = getMatchesData();
         ArrayList<Delivery> deliveries = getDeliveriesData();
 
-//        findNumberOfMatchesPlayed(matches);
-//        findNumberOfMatchesWonPerTeam(matches);
-//        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
-//        findTheMostEconomicalBowlerIn2015(matches, deliveries);
-//        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
+        findNumberOfMatchesPlayed(matches);
+        findNumberOfMatchesWonPerTeam(matches);
+        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+        findTheMostEconomicalBowlerIn2015(matches, deliveries);
+        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
 
 
     }
