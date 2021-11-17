@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
@@ -56,21 +57,36 @@ public class Main {
         ArrayList<Delivery> deliveries = getDeliveriesData();
 
         findNumberOfMatchesPlayed(matches);
-        findNumberOfMatchesWonPerTeam(matches);
-        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
-        findTheMostEconomicalBowlerIn2015(matches, deliveries);
-        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
+//        findNumberOfMatchesWonPerTeam(matches);
+//        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+//        findTheMostEconomicalBowlerIn2015(matches, deliveries);
+//        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
 
 
     }
 
     private static void findNumberOfMatchesPlayed(HashMap<Integer, Match> matches) {
+        HashMap<Integer,Integer> result_map = new HashMap<Integer, Integer>();
+        int count=1;
+
+        for(Match match : matches.values()){
+            if (result_map.containsKey(match.getSeason())) {
+                result_map.put(match.getSeason(), count+=1);
+            } else {
+                result_map.put(match.getSeason(), 1);
+                count=1;
+            }
+        }
+        System.out.println(result_map);
     }
 
     private static void findNumberOfMatchesWonPerTeam(HashMap<Integer, Match> matches) {
+
     }
 
-    private static void findExtraRunsConcededPerTeamIn2016(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    private static void findExtraRunsConcededPerTeamIn2016
+            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+
     }
 
     private static void findTheMostEconomicalBowlerIn2015(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
