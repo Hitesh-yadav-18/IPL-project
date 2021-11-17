@@ -1,18 +1,9 @@
-package Utility;
+package com.hitesh.iplproject;
 
 public class Bowler {
 
-//    private String name;
     private int totalRun;
     private int balls;
-
-//    public String getName() {
-//        return name;
-//    }
-//
-//    public void setName(String name) {
-//        this.name = name;
-//    }
 
     public int getTotalRun() {
         return totalRun;
@@ -29,7 +20,6 @@ public class Bowler {
     public void setBalls(int balls) {
         this.balls = balls;
     }
-
 
 
 }
