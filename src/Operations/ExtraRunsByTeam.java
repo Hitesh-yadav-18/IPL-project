@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 
 public class ExtraRunsByTeam {
 
-    public static void extraRunsByTeamIn2016(HashMap<Integer, Matches> hm, ArrayList<Deliveries> aList){
+    public static HashMap<String, Integer> extraRunsByTeamIn2016(HashMap<Integer, Matches> hm, ArrayList<Deliveries> aList){
 
         Set<Entry<Integer, Matches>> set = hm.entrySet();
         Iterator<Entry<Integer, Matches> > itr = set.iterator();
@@ -38,6 +38,9 @@ public class ExtraRunsByTeam {
         Deliveries del_obj = null;
 
         int del_id=0;
+
+        int economicalValue = 0;
+
         HashMap <String, Integer> hashMap = new HashMap<>();
         for(int i=0;i<arr.size();i++){
             itrList = aList.iterator();
@@ -56,7 +59,7 @@ public class ExtraRunsByTeam {
             }
 
         }
-        System.out.println(hashMap);
+        return hashMap;
     }
 }
 
