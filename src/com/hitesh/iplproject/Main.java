@@ -127,7 +127,63 @@ public class Main {
     private static void findTheMostEconomicalBowlerIn2015
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
 
+        List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
 
+        Iterator<Delivery> itrList = null;
+        Delivery del_obj = null;
+
+        int del_id = 0;
+        int economicalValue = 0;
+
+        HashMap<String, Bowler> hashMap = new HashMap<>();
+        Bowler bowler = null;
+        int run = 0;
+        int totalRuns = 0;
+        int ball = 0;
+        for (int i = 0; i < match.size(); i++) {
+            itrList = deliveries.iterator();
+            del_id = match.get(i);
+            while (itrList.hasNext()) {
+                del_obj = itrList.next();
+//                System.out.println(del_obj);
+                if (del_id == del_obj.getMatchId()) {
+                    if (hashMap.containsKey(del_obj.getBowler())) {
+                        bowler = hashMap.get(del_obj.getBowler());
+                        bowler.setBalls(bowler.getBalls() + 1);
+                        bowler.setTotalRun(bowler.getTotalRun() + del_obj.getTotalRuns());
+                        hashMap.put(del_obj.getBowler(), bowler);
+//                 System.out.print("count : "+count);
+                    } else {
+                        totalRuns = del_obj.getTotalRuns();
+                        ball = 1;
+                        bowler = new Bowler();
+                        bowler.setTotalRun(totalRuns);
+                        bowler.setBalls(ball);
+                        hashMap.put(del_obj.getBowler(), bowler);
+                    }
+                }
+            }
+
+        }
+
+        HashMap<String, Double> economy_map = new HashMap<>();
+
+        Double economicValue = 0.0;
+        Set<Map.Entry<String, Bowler>> setHashMap = hashMap.entrySet();
+        Iterator<Map.Entry<String, Bowler>> itrHashMap = setHashMap.iterator();
+        Map.Entry<String, Bowler> entryHashMap = null;
+
+        Bowler bowler_obj = null;
+
+        while (itrHashMap.hasNext()) {
+            entryHashMap = itrHashMap.next();
+
+            bowler_obj = entryHashMap.getValue();
+
+            economicValue = (bowler_obj.getTotalRun() / (bowler_obj.getBalls() / 6d));
+            economy_map.put(entryHashMap.getKey(), economicValue);
+        }
+        System.out.println(economy_map);
     }
 
     private static void findLegbyeRunsConcededPerTeamin2013
