@@ -64,6 +64,21 @@ public class Main {
 
     }
 
+    private static void findNumberOfMatchesPlayed(HashMap<Integer, Match> matches) {
+    }
+
+    private static void findNumberOfMatchesWonPerTeam(HashMap<Integer, Match> matches) {
+    }
+
+    private static void findExtraRunsConcededPerTeamIn2016(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    }
+
+    private static void findTheMostEconomicalBowlerIn2015(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    }
+
+    private static void findLegbyeRunsConcededPerTeamin2013(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    }
+
 
     public static ArrayList<Delivery> getDeliveriesData() throws IOException {
         String line = "";
