@@ -56,7 +56,7 @@ public class Main {
 
 //        findNumberOfMatchesPlayed(matches);
 //        findNumberOfMatchesWonPerTeam(matches);
-        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+//        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
 //        findTheMostEconomicalBowlerIn2015(matches, deliveries);
 //        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
 
@@ -98,21 +98,8 @@ public class Main {
 
     private static void findExtraRunsConcededPerTeamIn2016
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
-        List<Integer> matchesIdList = new ArrayList<>();
-        Set<Map.Entry<Integer, Match>> set = matches.entrySet();
-        Iterator<Map.Entry<Integer, Match>> itr = set.iterator();
-        int season = 0;
-        int id=0;
+        List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
 
-        while(itr.hasNext()){
-          Map.Entry<Integer, Match> entry = itr.next();
-           Match match = entry.getValue();
-            season = match.getSeason();
-            if(season == 2016){
-                id = match.getId();
-                matchesIdList.add(id);
-            }
-        }
         Iterator<Delivery> itrList = null;
         int deliveriesId=0;
         int economicalValue = 0;
@@ -139,12 +126,34 @@ public class Main {
 
     private static void findTheMostEconomicalBowlerIn2015
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
-        
+
+
     }
 
-    private static void findLegbyeRunsConcededPerTeamin2013(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    private static void findLegbyeRunsConcededPerTeamin2013
+            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+
     }
 
+    public static  ArrayList<Integer> findIdOfMatchesOfYear(HashMap<Integer, Match> matches, int givenYear){
+        ArrayList<Integer> matchList = new ArrayList<>();
+        Set<Map.Entry<Integer, Match>> set = matches.entrySet();
+        Iterator<Map.Entry<Integer, Match>> itr = set.iterator();
+        int season = 0;
+        int id=0;
+        while(itr.hasNext()){
+            Map.Entry<Integer, Match> entry = itr.next();
+
+            Match match_obj = entry.getValue();
+            season = match_obj.getSeason();
+
+            if(season == givenYear) {
+                id = match_obj.getId();         //entry.getKey();
+                matchList.add(id);
+            }
+        }
+        return matchList;
+    }
 
     public static ArrayList<Delivery> getDeliveriesData() throws IOException {
         String line = "";
