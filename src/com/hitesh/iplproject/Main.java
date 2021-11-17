@@ -56,9 +56,9 @@ public class Main {
         HashMap<Integer, Match> matches = getMatchesData();
         ArrayList<Delivery> deliveries = getDeliveriesData();
 
-        findNumberOfMatchesPlayed(matches);
+//        findNumberOfMatchesPlayed(matches);
 //        findNumberOfMatchesWonPerTeam(matches);
-//        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
 //        findTheMostEconomicalBowlerIn2015(matches, deliveries);
 //        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
 
@@ -79,7 +79,23 @@ public class Main {
     }
 
     private static void findNumberOfMatchesWonPerTeam(HashMap<Integer, Match> matches) {
+        HashMap<String, HashMap<Integer, Integer>> result_map = new HashMap<String, HashMap<Integer, Integer>>();
+        HashMap<Integer, Integer> subMap = null;
 
+        for(Match match : matches.values()){
+            if (result_map.containsKey(match.getWinner())) {
+                subMap = result_map.get(match.getWinner());
+                if (subMap.containsKey(match.getSeason())) {
+                    subMap.put(match.getSeason(), subMap.get(match.getSeason())+1);
+                } else {
+                    subMap.put(match.getSeason(), 1);
+                }
+                result_map.put(match.getWinner(), subMap);
+            } else {
+                result_map.put(match.getWinner(), new HashMap<>(Map.of(match.getSeason(), 1)));
+            }
+        }
+        System.out.println(result_map);
     }
 
     private static void findExtraRunsConcededPerTeamIn2016
