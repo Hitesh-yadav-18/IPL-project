@@ -9,7 +9,7 @@ import java.util.Map.Entry;
 
 public class TopBowlers {
 
-    public static HashMap<String, Bowler> topBowlersIn2015(HashMap<Integer, Matches> hm, ArrayList<Deliveries> aList){
+    public static HashMap<String, Double> topBowlersIn2015(HashMap<Integer, Matches> hm, ArrayList<Deliveries> aList){
         Set<Map.Entry<Integer, Matches>> set = hm.entrySet();
         Iterator<Map.Entry<Integer, Matches>> itr = set.iterator();
         Map.Entry<Integer, Matches> entry = null;
@@ -72,8 +72,30 @@ public class TopBowlers {
 
         }
 
-//
+        // iteate hashmap to find result
+        HashMap<String, Double> economy_map = new HashMap<>();
+        // calculate economy rate
+        Double economicValue = 0.0;
 
-        return hashMap;
+        Set<Map.Entry<String, Bowler>> setHashMap = hashMap.entrySet();
+        Iterator<Map.Entry<String, Bowler>> itrHashMap = setHashMap.iterator();
+        Entry<String, Bowler> entryHashMap = null;
+
+        Bowler bowler_obj = null;
+
+        while(itrHashMap.hasNext()){
+            entryHashMap = itrHashMap.next();
+
+            bowler_obj = entryHashMap.getValue();
+
+            economicValue = new Double(bowler_obj.getTotalRun()/(bowler_obj.getBalls()/6));
+           // if(economy_map.containsKey(entryHashMap.getKey())){
+                    economy_map.put(entryHashMap.getKey(), economicValue);
+
+
+        }
+
+
+        return economy_map;
     }
 }
