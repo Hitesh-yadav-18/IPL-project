@@ -5,9 +5,7 @@ package com.hitesh.iplproject;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
@@ -100,10 +98,48 @@ public class Main {
 
     private static void findExtraRunsConcededPerTeamIn2016
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+        List<Integer> matchesIdList = new ArrayList<>();
+        Set<Map.Entry<Integer, Match>> set = matches.entrySet();
+        Iterator<Map.Entry<Integer, Match>> itr = set.iterator();
+        int season = 0;
+        int id=0;
 
+        while(itr.hasNext()){
+          Map.Entry<Integer, Match> entry = itr.next();
+           Match match = entry.getValue();
+            season = match.getSeason();
+            if(season == 2016){
+                id = match.getId();
+                matchesIdList.add(id);
+            }
+        }
+        Iterator<Delivery> itrList = null;
+        int deliveriesId=0;
+        int economicalValue = 0;
+
+        HashMap <String, Integer> hashMap = new HashMap<>();
+        for(int i=0;i<matchesIdList.size();i++){
+            itrList = deliveries.iterator();
+            deliveriesId = matchesIdList.get(i);
+
+            while(itrList.hasNext()){
+               Delivery delivery = itrList.next();
+                if(deliveriesId == delivery.getMatchId() ) {
+                    if (hashMap.containsKey(delivery.getBattingTeam())) {
+                        hashMap.put(delivery.getBattingTeam(),
+                                hashMap.get(delivery.getBattingTeam()) + delivery.getExtraRuns());
+                    } else {
+                        hashMap.put(delivery.getBattingTeam(), delivery.getExtraRuns());
+                    }
+                }
+            }
+        }
+        System.out.println(hashMap);
     }
 
-    private static void findTheMostEconomicalBowlerIn2015(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+    private static void findTheMostEconomicalBowlerIn2015
+            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+        
     }
 
     private static void findLegbyeRunsConcededPerTeamin2013(HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
