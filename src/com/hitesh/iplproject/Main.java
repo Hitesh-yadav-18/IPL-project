@@ -1,10 +1,12 @@
 package com.hitesh.iplproject;
 
+
+
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Main {
 
@@ -30,8 +32,28 @@ public class Main {
     public static final int DISMISSAL_KIND = 19;
     public static final int FIELDER = 20;
 
-    public static void main(String[] args) {
+    public static final int ID = 0;
+    public static final int SEASON = 1;
+    public static final int CITY = 2;
+    public static final int DATE = 3;
+    public static final int TEAM_1 = 4;
+    public static final int TEAM_2 = 5;
+    public static final int TOSS_WINNER = 6;
+    public static final int TOSS_DECISION = 7;
+    public static final int RESULT = 8;
+    public static final int DL_APPLIED = 9;
+    public static final int WINNER = 10;
+    public static final int WIN_BY_RUNS = 11;
+    public static final int WIN_BY_WICKETS = 12;
+    public static final int PLAYER_OF_MATCH = 13;
+    public static final int VENUE = 14;
+    public static final int UMPIRE_1 = 15;
+    public static final int UMPIRE_2 = 16;
+    public static final int UMPIRE_3 = 17;
 
+    public static void main(String[] args) {
+        HashMap<Integer, Match> hm = getMatchesData();
+        ArrayList<Delivery> aList = getDeliveriesData();
 
     }
 
@@ -75,6 +97,46 @@ public class Main {
         }
         bufferedReader.close();
         return matches;
+    }
+
+    public static HashMap<Integer, Match> getMatchesData(String fileName) throws IOException {
+        String line = "";
+        String [] columns = null;
+        HashMap<Integer, Match> map = new HashMap<Integer, Match>();
+        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        bufferedReader.readLine();
+
+        while((line = bufferedReader.readLine()) != null){
+                columns = line.split(",");
+                int id=Integer.parseInt(columns[0]);
+                Match match = new Match();
+
+                match.setId(Integer.parseInt(columns[ID]));
+                match.setSeason(Integer.parseInt(columns[SEASON]));
+                match.setCity(columns[CITY]);
+                match.setDate(columns[DATE]);
+                match.setTeam1(columns[TEAM_1]);
+                match.setTeam2(columns[TEAM_2]);
+                match.setTossWinner(columns[TOSS_WINNER]);
+                match.setTossDecision(columns[TOSS_DECISION]);
+                match.setResult(columns[RESULT]);
+                match.setDlApplied(Integer.parseInt(columns[DL_APPLIED]));
+                match.setWinner(columns[WINNER]);
+                match.setWinByRuns(Integer.parseInt(columns[WIN_BY_RUNS]));
+                match.setWinByWickets(Integer.parseInt(columns[WIN_BY_WICKETS]));
+                match.setPlayerOfMatch(columns[PLAYER_OF_MATCH]);
+                match.setVenue(columns[VENUE]);
+                if(columns.length>15)
+                    match.setUmpire1(columns[UMPIRE_1]);
+                if(columns.length>16)
+                    match.setUmpire2(columns[UMPIRE_2]);
+                if(columns.length>17)
+                    match.setUmpire3(columns[UMPIRE_3]);
+
+            map.put(id,match);
+        }
+        bufferedReader.close();
+        return map;
     }
 
 }

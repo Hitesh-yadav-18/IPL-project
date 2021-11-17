@@ -30,7 +30,7 @@ public class Matches {
           this.id = id;
      }
 
-     public int getSeason() {
+     public Integer getSeason() {
           return season;
      }
 
