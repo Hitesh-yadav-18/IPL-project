@@ -67,14 +67,12 @@ public class Main {
 
     private static void findNumberOfMatchesPlayed(HashMap<Integer, Match> matches) {
         HashMap<Integer,Integer> result_map = new HashMap<Integer, Integer>();
-        int count=1;
 
         for(Match match : matches.values()){
             if (result_map.containsKey(match.getSeason())) {
-                result_map.put(match.getSeason(), count+=1);
+                result_map.put(match.getSeason(), result_map.get(match.getSeason())+1);
             } else {
                 result_map.put(match.getSeason(), 1);
-                count=1;
             }
         }
         System.out.println(result_map);
