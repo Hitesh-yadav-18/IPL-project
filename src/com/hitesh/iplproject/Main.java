@@ -51,18 +51,26 @@ public class Main {
     public static final int UMPIRE_2 = 16;
     public static final int UMPIRE_3 = 17;
 
-    public static void main(String[] args) {
-        HashMap<Integer, Match> hm = getMatchesData();
-        ArrayList<Delivery> aList = getDeliveriesData();
+    public static void main(String[] args) throws IOException {
+        HashMap<Integer, Match> matches = getMatchesData();
+        ArrayList<Delivery> deliveries = getDeliveriesData();
+
+        findNumberOfMatchesPlayed(matches);
+        findNumberOfMatchesWonPerTeam(matches);
+        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+        findTheMostEconomicalBowlerIn2015(matches, deliveries);
+
 
     }
 
 
-    public static ArrayList<Delivery> getDeliveriesData(String fileName) throws IOException {
+    public static ArrayList<Delivery> getDeliveriesData() throws IOException {
         String line = "";
         String[] columns = null;
         ArrayList<Delivery> matches = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        BufferedReader bufferedReader =
+                new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/deliveries.csv"));
+
         bufferedReader.readLine();
 
         while ((line = bufferedReader.readLine()) != null) {
@@ -99,11 +107,13 @@ public class Main {
         return matches;
     }
 
-    public static HashMap<Integer, Match> getMatchesData(String fileName) throws IOException {
+    public static HashMap<Integer, Match> getMatchesData() throws IOException {
         String line = "";
         String [] columns = null;
         HashMap<Integer, Match> map = new HashMap<Integer, Match>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader(fileName));
+        BufferedReader bufferedReader =
+                new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/matches.csv"));
+
         bufferedReader.readLine();
 
         while((line = bufferedReader.readLine()) != null){
