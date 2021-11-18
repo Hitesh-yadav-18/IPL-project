@@ -126,7 +126,7 @@ public class Main {
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
 
         Iterator<Delivery> itrList = null;
-        Delivery del_obj = null;
+        Delivery delivery = null;
 
         HashMap<String, Bowler> hashMap = new HashMap<>();
         Bowler bowler = null;
@@ -137,22 +137,22 @@ public class Main {
             itrList = deliveries.iterator();
              int del_id = match.get(i);
             while (itrList.hasNext()) {
-                del_obj = itrList.next();
-//                System.out.println(del_obj);
-                if (del_id == del_obj.getMatchId()) {
-                    if (hashMap.containsKey(del_obj.getBowler())) {
-                        bowler = hashMap.get(del_obj.getBowler());
+                delivery = itrList.next();
+//                System.out.println(delivery);
+                if (del_id == delivery.getMatchId()) {
+                    if (hashMap.containsKey(delivery.getBowler())) {
+                        bowler = hashMap.get(delivery.getBowler());
                         bowler.setBalls(bowler.getBalls() + 1);
-                        bowler.setTotalRun(bowler.getTotalRun() + del_obj.getTotalRuns());
-                        hashMap.put(del_obj.getBowler(), bowler);
+                        bowler.setTotalRun(bowler.getTotalRun() + delivery.getTotalRuns());
+                        hashMap.put(delivery.getBowler(), bowler);
 //                 System.out.print("count : "+count);
                     } else {
-                        totalRuns = del_obj.getTotalRuns();
+                        totalRuns = delivery.getTotalRuns();
                         ball = 1;
                         bowler = new Bowler();
                         bowler.setTotalRun(totalRuns);
                         bowler.setBalls(ball);
-                        hashMap.put(del_obj.getBowler(), bowler);
+                        hashMap.put(delivery.getBowler(), bowler);
                     }
                 }
             }
