@@ -270,7 +270,7 @@ public class Main {
     public static HashMap<Integer, Match> getMatchesData() throws IOException {
         String line = "";
         String [] columns = null;
-        HashMap<Integer, Match> map = new HashMap<Integer, Match>();
+        HashMap<Integer, Match> matches = new HashMap<Integer, Match>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/matches.csv"));
 
@@ -303,10 +303,10 @@ public class Main {
                 if(columns.length>17)
                     match.setUmpire3(columns[UMPIRE_3]);
 
-            map.put(id,match);
+            matches.put(id,match);
         }
         bufferedReader.close();
-        return map;
+        return matches;
     }
 
 }
