@@ -135,11 +135,11 @@ public class Main {
         int ball = 0;
         for (int i = 0; i < match.size(); i++) {
             itrList = deliveries.iterator();
-             int del_id = match.get(i);
+             int deliveryId = match.get(i);
             while (itrList.hasNext()) {
                 delivery = itrList.next();
 //                System.out.println(delivery);
-                if (del_id == delivery.getMatchId()) {
+                if (deliveryId == delivery.getMatchId()) {
                     if (hashMap.containsKey(delivery.getBowler())) {
                         bowler = hashMap.get(delivery.getBowler());
                         bowler.setBalls(bowler.getBalls() + 1);
