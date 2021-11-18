@@ -95,16 +95,15 @@ public class Main {
 
     private static void findExtraRunsConcededPerTeamIn2016
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
+        HashMap <String, Integer> hashMap = new HashMap<>();
 
         Iterator<Delivery> itrList = null;
-        int deliveriesId=0;
-        int economicalValue = 0;
 
-        HashMap <String, Integer> hashMap = new HashMap<>();
         for(int i=0;i<matchesIdList.size();i++){
             itrList = deliveries.iterator();
-            deliveriesId = matchesIdList.get(i);
+          int deliveriesId = matchesIdList.get(i);
 
             while(itrList.hasNext()){
                Delivery delivery = itrList.next();
@@ -129,9 +128,6 @@ public class Main {
         Iterator<Delivery> itrList = null;
         Delivery del_obj = null;
 
-        int del_id = 0;
-        int economicalValue = 0;
-
         HashMap<String, Bowler> hashMap = new HashMap<>();
         Bowler bowler = null;
         int run = 0;
@@ -139,7 +135,7 @@ public class Main {
         int ball = 0;
         for (int i = 0; i < match.size(); i++) {
             itrList = deliveries.iterator();
-            del_id = match.get(i);
+             int del_id = match.get(i);
             while (itrList.hasNext()) {
                 del_obj = itrList.next();
 //                System.out.println(del_obj);
