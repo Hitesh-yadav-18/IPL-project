@@ -124,11 +124,11 @@ public class Main {
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
 
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
-
+        HashMap<String, Bowler> hashMap = new HashMap<>();
         Iterator<Delivery> itrList = null;
         Delivery delivery = null;
 
-        HashMap<String, Bowler> hashMap = new HashMap<>();
+
         Bowler bowler = null;
         int run = 0;
         int totalRuns = 0;
@@ -154,7 +154,6 @@ public class Main {
                     }
                 }
             }
-
         }
 
         HashMap<String, Double> economy_map = new HashMap<>();
@@ -228,7 +227,7 @@ public class Main {
     public static ArrayList<Delivery> getDeliveriesData() throws IOException {
         String line = "";
         String[] columns = null;
-        ArrayList<Delivery> matches = new ArrayList<>();
+        ArrayList<Delivery> deliveries = new ArrayList<>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/deliveries.csv"));
 
@@ -262,10 +261,10 @@ public class Main {
             if (columns.length > 20)
                 del_obj.setFielder(columns[FIELDER]);
 
-            matches.add(del_obj);
+            deliveries.add(del_obj);
         }
         bufferedReader.close();
-        return matches;
+        return deliveries;
     }
 
     public static HashMap<Integer, Match> getMatchesData() throws IOException {
