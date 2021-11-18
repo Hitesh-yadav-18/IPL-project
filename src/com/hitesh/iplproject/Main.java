@@ -138,14 +138,12 @@ public class Main {
              int deliveryId = match.get(i);
             while (itrList.hasNext()) {
                 delivery = itrList.next();
-//                System.out.println(delivery);
                 if (deliveryId == delivery.getMatchId()) {
                     if (hashMap.containsKey(delivery.getBowler())) {
                         bowler = hashMap.get(delivery.getBowler());
                         bowler.setBalls(bowler.getBalls() + 1);
                         bowler.setTotalRun(bowler.getTotalRun() + delivery.getTotalRuns());
                         hashMap.put(delivery.getBowler(), bowler);
-//                 System.out.print("count : "+count);
                     } else {
                         totalRuns = delivery.getTotalRuns();
                         ball = 1;
