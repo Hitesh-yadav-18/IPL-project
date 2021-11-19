@@ -250,7 +250,7 @@ public class Main {
 
     public static List<Match> getMatchesData() throws IOException {
         String line = "";
-        String[] columns = null;
+        String[] data = null;
         List<Match> matches = new ArrayList<>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/matches.csv"));
@@ -258,31 +258,31 @@ public class Main {
         bufferedReader.readLine();
 
         while ((line = bufferedReader.readLine()) != null) {
-            columns = line.split(",");
-            int id = Integer.parseInt(columns[ID]);
+            data = line.split(",");
+            int id = Integer.parseInt(data[ID]);
             Match match = new Match();
 
-            match.setId(Integer.parseInt(columns[ID]));
-            match.setSeason(Integer.parseInt(columns[SEASON]));
-            match.setCity(columns[CITY]);
-            match.setDate(columns[DATE]);
-            match.setTeam1(columns[TEAM_1]);
-            match.setTeam2(columns[TEAM_2]);
-            match.setTossWinner(columns[TOSS_WINNER]);
-            match.setTossDecision(columns[TOSS_DECISION]);
-            match.setResult(columns[RESULT]);
-            match.setDlApplied(Integer.parseInt(columns[DL_APPLIED]));
-            match.setWinner(columns[WINNER]);
-            match.setWinByRuns(Integer.parseInt(columns[WIN_BY_RUNS]));
-            match.setWinByWickets(Integer.parseInt(columns[WIN_BY_WICKETS]));
-            match.setPlayerOfMatch(columns[PLAYER_OF_MATCH]);
-            match.setVenue(columns[VENUE]);
-            if (columns.length > 15)
-                match.setUmpire1(columns[UMPIRE_1]);
-            if (columns.length > 16)
-                match.setUmpire2(columns[UMPIRE_2]);
-            if (columns.length > 17)
-                match.setUmpire3(columns[UMPIRE_3]);
+            match.setId(Integer.parseInt(data[ID]));
+            match.setSeason(Integer.parseInt(data[SEASON]));
+            match.setCity(data[CITY]);
+            match.setDate(data[DATE]);
+            match.setTeam1(data[TEAM_1]);
+            match.setTeam2(data[TEAM_2]);
+            match.setTossWinner(data[TOSS_WINNER]);
+            match.setTossDecision(data[TOSS_DECISION]);
+            match.setResult(data[RESULT]);
+            match.setDlApplied(Integer.parseInt(data[DL_APPLIED]));
+            match.setWinner(data[WINNER]);
+            match.setWinByRuns(Integer.parseInt(data[WIN_BY_RUNS]));
+            match.setWinByWickets(Integer.parseInt(data[WIN_BY_WICKETS]));
+            match.setPlayerOfMatch(data[PLAYER_OF_MATCH]);
+            match.setVenue(data[VENUE]);
+            if (data.length > 15)
+                match.setUmpire1(data[UMPIRE_1]);
+            if (data.length > 16)
+                match.setUmpire2(data[UMPIRE_2]);
+            if (data.length > 17)
+                match.setUmpire3(data[UMPIRE_3]);
 
             matches.add(id, match);
         }
