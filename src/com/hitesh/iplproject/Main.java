@@ -97,7 +97,7 @@ public class Main {
             (List<Match> matches, List<Delivery> deliveries) {
 
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> teamExtraRuns = new HashMap<>();
 
         for (int i = 0; i < matchesIdList.size(); i++) {
             Iterator<Delivery> deliveriesIterator = deliveries.iterator();
@@ -106,16 +106,16 @@ public class Main {
             while (deliveriesIterator.hasNext()) {
                 Delivery delivery = deliveriesIterator.next();
                 if (deliveriesId == delivery.getMatchId()) {
-                    if (hashMap.containsKey(delivery.getBattingTeam())) {
-                        hashMap.put(delivery.getBattingTeam(),
-                                hashMap.get(delivery.getBattingTeam()) + delivery.getExtraRuns());
+                    if (teamExtraRuns.containsKey(delivery.getBattingTeam())) {
+                        teamExtraRuns.put(delivery.getBattingTeam(),
+                                teamExtraRuns.get(delivery.getBattingTeam()) + delivery.getExtraRuns());
                     } else {
-                        hashMap.put(delivery.getBattingTeam(), delivery.getExtraRuns());
+                        teamExtraRuns.put(delivery.getBattingTeam(), delivery.getExtraRuns());
                     }
                 }
             }
         }
-        System.out.println(hashMap);
+        System.out.println(teamExtraRuns);
     }
 
     private static void findTheMostEconomicalBowlerIn2015
