@@ -59,10 +59,10 @@ public class Main {
         findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
     }
 
-    private static void findNumberOfMatchesPlayed(HashMap<Integer, Match> matches) {
+    private static void findNumberOfMatchesPlayed(List<Match> matches) {
         HashMap<Integer, Integer> result_map = new HashMap<Integer, Integer>();
 
-        for (Match match : matches.values()) {
+        for (Match match : matches) {
             if (result_map.containsKey(match.getSeason())) {
                 result_map.put(match.getSeason(), result_map.get(match.getSeason()) + 1);
             } else {
