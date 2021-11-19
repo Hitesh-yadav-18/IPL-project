@@ -49,22 +49,22 @@ public class Main {
     public static final int UMPIRE_3 = 17;
 
     public static void main(String[] args) throws IOException {
-        HashMap<Integer, Match> matches = getMatchesData();
-        ArrayList<Delivery> deliveries = getDeliveriesData();
+        List<Match> matches = getMatchesData();
+        List<Delivery> deliveries = getDeliveriesData();
 
         findNumberOfMatchesPlayed(matches);
-//        findNumberOfMatchesWonPerTeam(matches);
-//        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
-//        findTheMostEconomicalBowlerIn2015(matches, deliveries);
-//        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
+        findNumberOfMatchesWonPerTeam(matches);
+        findExtraRunsConcededPerTeamIn2016(matches, deliveries);
+        findTheMostEconomicalBowlerIn2015(matches, deliveries);
+        findLegbyeRunsConcededPerTeamin2013(matches, deliveries);
     }
 
     private static void findNumberOfMatchesPlayed(HashMap<Integer, Match> matches) {
-        HashMap<Integer,Integer> result_map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> result_map = new HashMap<Integer, Integer>();
 
-        for(Match match : matches.values()){
+        for (Match match : matches.values()) {
             if (result_map.containsKey(match.getSeason())) {
-                result_map.put(match.getSeason(), result_map.get(match.getSeason())+1);
+                result_map.put(match.getSeason(), result_map.get(match.getSeason()) + 1);
             } else {
                 result_map.put(match.getSeason(), 1);
             }
@@ -75,11 +75,11 @@ public class Main {
     private static void findNumberOfMatchesWonPerTeam(HashMap<Integer, Match> matches) {
         HashMap<String, HashMap<Integer, Integer>> result_map = new HashMap<String, HashMap<Integer, Integer>>();
 
-        for(Match match : matches.values()){
+        for (Match match : matches.values()) {
             if (result_map.containsKey(match.getWinner())) {
-                HashMap<Integer, Integer>   subMap = result_map.get(match.getWinner());
+                HashMap<Integer, Integer> subMap = result_map.get(match.getWinner());
                 if (subMap.containsKey(match.getSeason())) {
-                    subMap.put(match.getSeason(), subMap.get(match.getSeason())+1);
+                    subMap.put(match.getSeason(), subMap.get(match.getSeason()) + 1);
                 } else {
                     subMap.put(match.getSeason(), 1);
                 }
@@ -97,17 +97,15 @@ public class Main {
             (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
 
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
-        HashMap <String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> hashMap = new HashMap<>();
 
-        Iterator<Delivery> itrList = null;
+        for (int i = 0; i < matchesIdList.size(); i++) {
+            Iterator<Delivery> itrList = deliveries.iterator();
+            int deliveriesId = matchesIdList.get(i);
 
-        for(int i=0;i<matchesIdList.size();i++){
-            itrList = deliveries.iterator();
-          int deliveriesId = matchesIdList.get(i);
-
-            while(itrList.hasNext()){
-               Delivery delivery = itrList.next();
-                if(deliveriesId == delivery.getMatchId() ) {
+            while (itrList.hasNext()) {
+                Delivery delivery = itrList.next();
+                if (deliveriesId == delivery.getMatchId()) {
                     if (hashMap.containsKey(delivery.getBattingTeam())) {
                         hashMap.put(delivery.getBattingTeam(),
                                 hashMap.get(delivery.getBattingTeam()) + delivery.getExtraRuns());
@@ -128,14 +126,13 @@ public class Main {
         Iterator<Delivery> itrList = null;
         Delivery delivery = null;
 
-
         Bowler bowler = null;
         int run = 0;
         int totalRuns = 0;
         int ball = 0;
         for (int i = 0; i < match.size(); i++) {
             itrList = deliveries.iterator();
-             int deliveryId = match.get(i);
+            int deliveryId = match.get(i);
             while (itrList.hasNext()) {
                 delivery = itrList.next();
                 if (deliveryId == delivery.getMatchId()) {
@@ -167,7 +164,6 @@ public class Main {
 
         while (itrHashMap.hasNext()) {
             entryHashMap = itrHashMap.next();
-
             bowler_obj = entryHashMap.getValue();
 
             economicValue = (bowler_obj.getTotalRun() / (bowler_obj.getBalls() / 6d));
@@ -181,17 +177,17 @@ public class Main {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2013);
 
         Iterator<Delivery> itrList = null;
-        int deliveriesId=0;
+        int deliveriesId = 0;
         int economicalValue = 0;
 
-        HashMap <String, Integer> hashMap = new HashMap<>();
-        for(int i=0;i<matchesIdList.size();i++){
+        HashMap<String, Integer> hashMap = new HashMap<>();
+        for (int i = 0; i < matchesIdList.size(); i++) {
             itrList = deliveries.iterator();
             deliveriesId = matchesIdList.get(i);
 
-            while(itrList.hasNext()){
+            while (itrList.hasNext()) {
                 Delivery delivery = itrList.next();
-                if(deliveriesId == delivery.getMatchId() ) {
+                if (deliveriesId == delivery.getMatchId()) {
                     if (hashMap.containsKey(delivery.getBattingTeam())) {
                         hashMap.put(delivery.getBattingTeam(),
                                 hashMap.get(delivery.getBattingTeam()) + delivery.getLegbyeRuns());
@@ -204,19 +200,19 @@ public class Main {
         System.out.println(hashMap);
     }
 
-    public static  ArrayList<Integer> findIdOfMatchesOfYear(HashMap<Integer, Match> matches, int givenYear){
+    public static ArrayList<Integer> findIdOfMatchesOfYear(HashMap<Integer, Match> matches, int givenYear) {
         ArrayList<Integer> matchList = new ArrayList<>();
         Set<Map.Entry<Integer, Match>> set = matches.entrySet();
         Iterator<Map.Entry<Integer, Match>> itr = set.iterator();
         int season = 0;
-        int id=0;
-        while(itr.hasNext()){
+        int id = 0;
+        while (itr.hasNext()) {
             Map.Entry<Integer, Match> entry = itr.next();
 
             Match match_obj = entry.getValue();
             season = match_obj.getSeason();
 
-            if(season == givenYear) {
+            if (season == givenYear) {
                 id = match_obj.getId();         //entry.getKey();
                 matchList.add(id);
             }
@@ -267,43 +263,43 @@ public class Main {
         return deliveries;
     }
 
-    public static HashMap<Integer, Match> getMatchesData() throws IOException {
+    public static List<Match> getMatchesData() throws IOException {
         String line = "";
-        String [] columns = null;
-        HashMap<Integer, Match> matches = new HashMap<Integer, Match>();
+        String[] columns = null;
+        List<Match> matches = new ArrayList<>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/matches.csv"));
 
         bufferedReader.readLine();
 
-        while((line = bufferedReader.readLine()) != null){
-                columns = line.split(",");
-                int id=Integer.parseInt(columns[0]);
-                Match match = new Match();
+        while ((line = bufferedReader.readLine()) != null) {
+            columns = line.split(",");
+            int id = Integer.parseInt(columns[ID]);
+            Match match = new Match();
 
-                match.setId(Integer.parseInt(columns[ID]));
-                match.setSeason(Integer.parseInt(columns[SEASON]));
-                match.setCity(columns[CITY]);
-                match.setDate(columns[DATE]);
-                match.setTeam1(columns[TEAM_1]);
-                match.setTeam2(columns[TEAM_2]);
-                match.setTossWinner(columns[TOSS_WINNER]);
-                match.setTossDecision(columns[TOSS_DECISION]);
-                match.setResult(columns[RESULT]);
-                match.setDlApplied(Integer.parseInt(columns[DL_APPLIED]));
-                match.setWinner(columns[WINNER]);
-                match.setWinByRuns(Integer.parseInt(columns[WIN_BY_RUNS]));
-                match.setWinByWickets(Integer.parseInt(columns[WIN_BY_WICKETS]));
-                match.setPlayerOfMatch(columns[PLAYER_OF_MATCH]);
-                match.setVenue(columns[VENUE]);
-                if(columns.length>15)
-                    match.setUmpire1(columns[UMPIRE_1]);
-                if(columns.length>16)
-                    match.setUmpire2(columns[UMPIRE_2]);
-                if(columns.length>17)
-                    match.setUmpire3(columns[UMPIRE_3]);
+            match.setId(Integer.parseInt(columns[ID]));
+            match.setSeason(Integer.parseInt(columns[SEASON]));
+            match.setCity(columns[CITY]);
+            match.setDate(columns[DATE]);
+            match.setTeam1(columns[TEAM_1]);
+            match.setTeam2(columns[TEAM_2]);
+            match.setTossWinner(columns[TOSS_WINNER]);
+            match.setTossDecision(columns[TOSS_DECISION]);
+            match.setResult(columns[RESULT]);
+            match.setDlApplied(Integer.parseInt(columns[DL_APPLIED]));
+            match.setWinner(columns[WINNER]);
+            match.setWinByRuns(Integer.parseInt(columns[WIN_BY_RUNS]));
+            match.setWinByWickets(Integer.parseInt(columns[WIN_BY_WICKETS]));
+            match.setPlayerOfMatch(columns[PLAYER_OF_MATCH]);
+            match.setVenue(columns[VENUE]);
+            if (columns.length > 15)
+                match.setUmpire1(columns[UMPIRE_1]);
+            if (columns.length > 16)
+                match.setUmpire2(columns[UMPIRE_2]);
+            if (columns.length > 17)
+                match.setUmpire3(columns[UMPIRE_3]);
 
-            matches.put(id,match);
+            matches.add(id, match);
         }
         bufferedReader.close();
         return matches;
