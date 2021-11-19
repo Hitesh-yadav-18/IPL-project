@@ -60,16 +60,16 @@ public class Main {
     }
 
     private static void findNumberOfMatchesPlayed(List<Match> matches) {
-        HashMap<Integer, Integer> result_map = new HashMap<Integer, Integer>();
+        HashMap<Integer, Integer> matchBySeason = new HashMap<Integer, Integer>();
 
         for (Match match : matches) {
-            if (result_map.containsKey(match.getSeason())) {
-                result_map.put(match.getSeason(), result_map.get(match.getSeason()) + 1);
+            if (matchBySeason.containsKey(match.getSeason())) {
+                matchBySeason.put(match.getSeason(), matchBySeason.get(match.getSeason()) + 1);
             } else {
-                result_map.put(match.getSeason(), 1);
+                matchBySeason.put(match.getSeason(), 1);
             }
         }
-        System.out.println(result_map);
+        System.out.println(matchBySeason);
     }
 
     private static void findNumberOfMatchesWonPerTeam(List<Match> matches) {
