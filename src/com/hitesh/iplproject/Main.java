@@ -73,24 +73,24 @@ public class Main {
     }
 
     private static void findNumberOfMatchesWonPerTeam(List<Match> matches) {
-        HashMap<String, HashMap<Integer, Integer>> result_map = new HashMap<String, HashMap<Integer, Integer>>();
+        HashMap<String, HashMap<Integer, Integer>> matchWonPerTeam = new HashMap<String, HashMap<Integer, Integer>>();
 
         for (Match match : matches) {
-            if (result_map.containsKey(match.getWinner())) {
-                HashMap<Integer, Integer> subMap = result_map.get(match.getWinner());
+            if (matchWonPerTeam.containsKey(match.getWinner())) {
+                HashMap<Integer, Integer> subMap = matchWonPerTeam.get(match.getWinner());
                 if (subMap.containsKey(match.getSeason())) {
                     subMap.put(match.getSeason(), subMap.get(match.getSeason()) + 1);
                 } else {
                     subMap.put(match.getSeason(), 1);
                 }
-                result_map.put(match.getWinner(), subMap);
+                matchWonPerTeam.put(match.getWinner(), subMap);
             } else {
                 HashMap<Integer, Integer> yearCount = new HashMap<>();
                 yearCount.put(match.getSeason(), 1);
-                result_map.put(match.getWinner(), yearCount);
+                matchWonPerTeam.put(match.getWinner(), yearCount);
             }
         }
-        System.out.println(result_map);
+        System.out.println(matchWonPerTeam);
     }
 
     private static void findExtraRunsConcededPerTeamIn2016
