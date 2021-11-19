@@ -100,11 +100,11 @@ public class Main {
         HashMap<String, Integer> hashMap = new HashMap<>();
 
         for (int i = 0; i < matchesIdList.size(); i++) {
-            Iterator<Delivery> itrList = deliveries.iterator();
+            Iterator<Delivery> deliveriesIterator = deliveries.iterator();
             int deliveriesId = matchesIdList.get(i);
 
-            while (itrList.hasNext()) {
-                Delivery delivery = itrList.next();
+            while (deliveriesIterator.hasNext()) {
+                Delivery delivery = deliveriesIterator.next();
                 if (deliveriesId == delivery.getMatchId()) {
                     if (hashMap.containsKey(delivery.getBattingTeam())) {
                         hashMap.put(delivery.getBattingTeam(),
