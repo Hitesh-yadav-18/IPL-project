@@ -127,7 +127,7 @@ public class Main {
             Iterator<Delivery> deliveryIterator = deliveries.iterator();
             int deliveryId = match.get(i);
             while (deliveryIterator.hasNext()) {
-               Delivery delivery = deliveryIterator.next();
+                Delivery delivery = deliveryIterator.next();
                 if (deliveryId == delivery.getMatchId()) {
                     if (bowlerTotalBallsRuns.containsKey(delivery.getBowler())) {
                         bowler = bowlerTotalBallsRuns.get(delivery.getBowler());
