@@ -120,17 +120,17 @@ public class Main {
 
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Bowler> bowlerTotalBallsRuns = new HashMap<>();
-        Iterator<Delivery> itrList = null;
+        Iterator<Delivery> deliveryIterator = null;
         Delivery delivery = null;
         Bowler bowler = null;
         int run = 0;
         int totalRuns = 0;
         int ball = 0;
         for (int i = 0; i < match.size(); i++) {
-            itrList = deliveries.iterator();
+            deliveryIterator = deliveries.iterator();
             int deliveryId = match.get(i);
-            while (itrList.hasNext()) {
-                delivery = itrList.next();
+            while (deliveryIterator.hasNext()) {
+                delivery = deliveryIterator.next();
                 if (deliveryId == delivery.getMatchId()) {
                     if (bowlerTotalBallsRuns.containsKey(delivery.getBowler())) {
                         bowler = bowlerTotalBallsRuns.get(delivery.getBowler());
