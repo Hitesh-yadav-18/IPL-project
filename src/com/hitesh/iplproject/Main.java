@@ -176,14 +176,10 @@ public class Main {
             (List<Match> matches, List<Delivery> deliveries) {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2013);
 
-        Iterator<Delivery> itrList = null;
-        int deliveriesId = 0;
-        int economicalValue = 0;
-
         HashMap<String, Integer> hashMap = new HashMap<>();
         for (int i = 0; i < matchesIdList.size(); i++) {
-            itrList = deliveries.iterator();
-            deliveriesId = matchesIdList.get(i);
+            Iterator<Delivery> itrList = deliveries.iterator();
+            int deliveriesId = matchesIdList.get(i);
 
             while (itrList.hasNext()) {
                 Delivery delivery = itrList.next();
