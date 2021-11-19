@@ -93,15 +93,13 @@ public class Main {
         System.out.println(matchWonPerTeam);
     }
 
-    private static void findExtraRunsConcededPerTeamIn2016
-            (List<Match> matches, List<Delivery> deliveries) {
-
+    private static void findExtraRunsConcededPerTeamIn2016(List<Match> matches, List<Delivery> deliveries) {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Integer> teamExtraRuns = new HashMap<>();
 
         for (int i = 0; i < matchesIdList.size(); i++) {
-            Iterator<Delivery> deliveriesIterator = deliveries.iterator();
             int deliveriesId = matchesIdList.get(i);
+            Iterator<Delivery> deliveriesIterator = deliveries.iterator();
 
             while (deliveriesIterator.hasNext()) {
                 Delivery delivery = deliveriesIterator.next();
@@ -118,14 +116,12 @@ public class Main {
         System.out.println(teamExtraRuns);
     }
 
-    private static void findTheMostEconomicalBowlerIn2015
-            (List<Match> matches, List<Delivery> deliveries) {
+    private static void findTheMostEconomicalBowlerIn2015(List<Match> matches, List<Delivery> deliveries) {
 
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
-        HashMap<String, Bowler> hashMap = new HashMap<>();
+        HashMap<String, Bowler> bowlerTotalBallsRuns = new HashMap<>();
         Iterator<Delivery> itrList = null;
         Delivery delivery = null;
-
         Bowler bowler = null;
         int run = 0;
         int totalRuns = 0;
@@ -136,18 +132,18 @@ public class Main {
             while (itrList.hasNext()) {
                 delivery = itrList.next();
                 if (deliveryId == delivery.getMatchId()) {
-                    if (hashMap.containsKey(delivery.getBowler())) {
-                        bowler = hashMap.get(delivery.getBowler());
+                    if (bowlerTotalBallsRuns.containsKey(delivery.getBowler())) {
+                        bowler = bowlerTotalBallsRuns.get(delivery.getBowler());
                         bowler.setBalls(bowler.getBalls() + 1);
                         bowler.setTotalRun(bowler.getTotalRun() + delivery.getTotalRuns());
-                        hashMap.put(delivery.getBowler(), bowler);
+                        bowlerTotalBallsRuns.put(delivery.getBowler(), bowler);
                     } else {
                         totalRuns = delivery.getTotalRuns();
                         ball = 1;
                         bowler = new Bowler();
                         bowler.setTotalRun(totalRuns);
                         bowler.setBalls(ball);
-                        hashMap.put(delivery.getBowler(), bowler);
+                        bowlerTotalBallsRuns.put(delivery.getBowler(), bowler);
                     }
                 }
             }
@@ -156,7 +152,7 @@ public class Main {
         HashMap<String, Double> economicValMap = new HashMap<>();
 
         Double economicValue = 0.0;
-        Set<Map.Entry<String, Bowler>> setHashMap = hashMap.entrySet();
+        Set<Map.Entry<String, Bowler>> setHashMap = bowlerTotalBallsRuns.entrySet();
         Iterator<Map.Entry<String, Bowler>> itrHashMap = setHashMap.iterator();
         Map.Entry<String, Bowler> entryHashMap = null;
 
