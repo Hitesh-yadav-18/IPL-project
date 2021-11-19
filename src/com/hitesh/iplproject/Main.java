@@ -189,7 +189,7 @@ public class Main {
     }
 
     public static List<Integer> findIdOfMatchesOfYear(List<Match> matches, int givenYear) {
-        List<Integer> matchList = new ArrayList<>();
+        List<Integer> matchYearIDs = new ArrayList<>();
         Iterator<Match> itr = matches.iterator();
         int season = 0;
         int id = 0;
@@ -199,10 +199,10 @@ public class Main {
 
             if (season == givenYear) {
                 id = match.getId();
-                matchList.add(id);
+                matchYearIDs.add(id);
             }
         }
-        return matchList;
+        return matchYearIDs;
     }
 
     public static List<Delivery> getDeliveriesData() throws IOException {
