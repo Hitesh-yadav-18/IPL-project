@@ -72,10 +72,10 @@ public class Main {
         System.out.println(result_map);
     }
 
-    private static void findNumberOfMatchesWonPerTeam(HashMap<Integer, Match> matches) {
+    private static void findNumberOfMatchesWonPerTeam(List<Match> matches) {
         HashMap<String, HashMap<Integer, Integer>> result_map = new HashMap<String, HashMap<Integer, Integer>>();
 
-        for (Match match : matches.values()) {
+        for (Match match : matches) {
             if (result_map.containsKey(match.getWinner())) {
                 HashMap<Integer, Integer> subMap = result_map.get(match.getWinner());
                 if (subMap.containsKey(match.getSeason())) {
