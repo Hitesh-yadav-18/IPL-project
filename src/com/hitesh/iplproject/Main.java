@@ -220,10 +220,10 @@ public class Main {
         return matchList;
     }
 
-    public static ArrayList<Delivery> getDeliveriesData() throws IOException {
+    public static List<Delivery> getDeliveriesData() throws IOException {
         String line = "";
         String[] columns = null;
-        ArrayList<Delivery> deliveries = new ArrayList<>();
+        List<Delivery> deliveries = new ArrayList<>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/deliveries.csv"));
 
