@@ -94,7 +94,7 @@ public class Main {
     }
 
     private static void findExtraRunsConcededPerTeamIn2016
-            (List<Match> matches, ArrayList<Delivery> deliveries) {
+            (List<Match> matches, List<Delivery> deliveries) {
 
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Integer> hashMap = new HashMap<>();
