@@ -120,17 +120,14 @@ public class Main {
 
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Bowler> bowlerTotalBallsRuns = new HashMap<>();
-        Iterator<Delivery> deliveryIterator = null;
-        Delivery delivery = null;
         Bowler bowler = null;
-        int run = 0;
         int totalRuns = 0;
-        int ball = 0;
+        int totalBalls = 0;
         for (int i = 0; i < match.size(); i++) {
-            deliveryIterator = deliveries.iterator();
+            Iterator<Delivery> deliveryIterator = deliveries.iterator();
             int deliveryId = match.get(i);
             while (deliveryIterator.hasNext()) {
-                delivery = deliveryIterator.next();
+               Delivery delivery = deliveryIterator.next();
                 if (deliveryId == delivery.getMatchId()) {
                     if (bowlerTotalBallsRuns.containsKey(delivery.getBowler())) {
                         bowler = bowlerTotalBallsRuns.get(delivery.getBowler());
@@ -139,17 +136,17 @@ public class Main {
                         bowlerTotalBallsRuns.put(delivery.getBowler(), bowler);
                     } else {
                         totalRuns = delivery.getTotalRuns();
-                        ball = 1;
+                        totalBalls = 1;
                         bowler = new Bowler();
                         bowler.setTotalRun(totalRuns);
-                        bowler.setBalls(ball);
+                        bowler.setBalls(totalBalls);
                         bowlerTotalBallsRuns.put(delivery.getBowler(), bowler);
                     }
                 }
             }
         }
 
-        HashMap<String, Double> economicValMap = new HashMap<>();
+        HashMap<String, Double> economicBowler = new HashMap<>();
 
         Double economicValue = 0.0;
         Set<Map.Entry<String, Bowler>> setHashMap = bowlerTotalBallsRuns.entrySet();
@@ -163,16 +160,16 @@ public class Main {
             bowler_obj = entryHashMap.getValue();
 
             economicValue = (bowler_obj.getTotalRun() / (bowler_obj.getBalls() / 6d));
-            economicValMap.put(entryHashMap.getKey(), economicValue);
+            economicBowler.put(entryHashMap.getKey(), economicValue);
         }
-        System.out.println(economicValMap);
+        System.out.println(economicBowler);
     }
 
-    private static void findLegbyeRunsConcededPerTeamin2013
-            (List<Match> matches, List<Delivery> deliveries) {
+    private static void findLegbyeRunsConcededPerTeamin2013(List<Match> matches, List<Delivery> deliveries) {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2013);
 
-        HashMap<String, Integer> hashMap = new HashMap<>();
+        HashMap<String, Integer> matchLegbyeRuns = new HashMap<>();
+
         for (int i = 0; i < matchesIdList.size(); i++) {
             Iterator<Delivery> itrList = deliveries.iterator();
             int deliveriesId = matchesIdList.get(i);
@@ -180,16 +177,16 @@ public class Main {
             while (itrList.hasNext()) {
                 Delivery delivery = itrList.next();
                 if (deliveriesId == delivery.getMatchId()) {
-                    if (hashMap.containsKey(delivery.getBattingTeam())) {
-                        hashMap.put(delivery.getBattingTeam(),
-                                hashMap.get(delivery.getBattingTeam()) + delivery.getLegbyeRuns());
+                    if (matchLegbyeRuns.containsKey(delivery.getBattingTeam())) {
+                        matchLegbyeRuns.put(delivery.getBattingTeam(),
+                                matchLegbyeRuns.get(delivery.getBattingTeam()) + delivery.getLegbyeRuns());
                     } else {
-                        hashMap.put(delivery.getBattingTeam(), delivery.getLegbyeRuns());
+                        matchLegbyeRuns.put(delivery.getBattingTeam(), delivery.getLegbyeRuns());
                     }
                 }
             }
         }
-        System.out.println(hashMap);
+        System.out.println(matchLegbyeRuns);
     }
 
     public static List<Integer> findIdOfMatchesOfYear(List<Match> matches, int givenYear) {
