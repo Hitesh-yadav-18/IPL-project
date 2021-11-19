@@ -117,9 +117,9 @@ public class Main {
     }
 
     private static void findTheMostEconomicalBowlerIn2015(List<Match> matches, List<Delivery> deliveries) {
-
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Bowler> bowlerTotalBallsRuns = new HashMap<>();
+
         Bowler bowler = null;
         int totalRuns = 0;
         int totalBalls = 0;
@@ -167,8 +167,7 @@ public class Main {
 
     private static void findLegbyeRunsConcededPerTeamin2013(List<Match> matches, List<Delivery> deliveries) {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2013);
-
-        HashMap<String, Integer> matchLegbyeRuns = new HashMap<>();
+        HashMap<String, Integer> teamLegbyeRuns = new HashMap<>();
 
         for (int i = 0; i < matchesIdList.size(); i++) {
             Iterator<Delivery> itrList = deliveries.iterator();
@@ -177,16 +176,16 @@ public class Main {
             while (itrList.hasNext()) {
                 Delivery delivery = itrList.next();
                 if (deliveriesId == delivery.getMatchId()) {
-                    if (matchLegbyeRuns.containsKey(delivery.getBattingTeam())) {
-                        matchLegbyeRuns.put(delivery.getBattingTeam(),
-                                matchLegbyeRuns.get(delivery.getBattingTeam()) + delivery.getLegbyeRuns());
+                    if (teamLegbyeRuns.containsKey(delivery.getBattingTeam())) {
+                        teamLegbyeRuns.put(delivery.getBattingTeam(),
+                                teamLegbyeRuns.get(delivery.getBattingTeam()) + delivery.getLegbyeRuns());
                     } else {
-                        matchLegbyeRuns.put(delivery.getBattingTeam(), delivery.getLegbyeRuns());
+                        teamLegbyeRuns.put(delivery.getBattingTeam(), delivery.getLegbyeRuns());
                     }
                 }
             }
         }
-        System.out.println(matchLegbyeRuns);
+        System.out.println(teamLegbyeRuns);
     }
 
     public static List<Integer> findIdOfMatchesOfYear(List<Match> matches, int givenYear) {
