@@ -94,7 +94,7 @@ public class Main {
     }
 
     private static void findExtraRunsConcededPerTeamIn2016
-            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+            (List<Match> matches, ArrayList<Delivery> deliveries) {
 
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Integer> hashMap = new HashMap<>();
@@ -200,20 +200,17 @@ public class Main {
         System.out.println(hashMap);
     }
 
-    public static ArrayList<Integer> findIdOfMatchesOfYear(HashMap<Integer, Match> matches, int givenYear) {
-        ArrayList<Integer> matchList = new ArrayList<>();
-        Set<Map.Entry<Integer, Match>> set = matches.entrySet();
-        Iterator<Map.Entry<Integer, Match>> itr = set.iterator();
+    public static List<Integer> findIdOfMatchesOfYear(List<Match> matches, int givenYear) {
+        List<Integer> matchList = new ArrayList<>();
+        Iterator<Match> itr = matches.iterator();
         int season = 0;
         int id = 0;
         while (itr.hasNext()) {
-            Map.Entry<Integer, Match> entry = itr.next();
-
-            Match match_obj = entry.getValue();
-            season = match_obj.getSeason();
+            Match match = itr.next();
+            season = match.getSeason();
 
             if (season == givenYear) {
-                id = match_obj.getId();         //entry.getKey();
+                id = match.getId();
                 matchList.add(id);
             }
         }
