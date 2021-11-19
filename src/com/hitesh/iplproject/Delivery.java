@@ -194,30 +194,4 @@ public class Delivery {
                 this.fielder = fielder;
         }
 
-        @Override
-        public String toString() {
-                return "Deliveries{" +
-                        "match_id=" + matchId +
-                        ", inning=" + inning +
-                        ", batting_team='" + battingTeam + '\'' +
-                        ", bowling_team='" + bowlingTeam + '\'' +
-                        ", over=" + over +
-                        ", ball=" + ball +
-                        ", batsman='" + batsman + '\'' +
-                        ", non_striker='" + nonStriker + '\'' +
-                        ", bowler='" + bowler + '\'' +
-                        ", is_super_over=" + isSuperOver +
-                        ", wide_runs=" + wideRuns +
-                        ", bye_runs=" + byeRuns +
-                        ", legbye_runs=" + legbyeRuns +
-                        ", noball_runs=" + noballRuns +
-                        ", panelty_runs=" + paneltyRuns +
-                        ", batsman_runs=" + batsmanRuns +
-                        ", extra_runs=" + extraRuns +
-                        ", total_runs=" + totalRuns +
-                        ", player_dismissed='" + playerDismissed + '\'' +
-                        ", dismissal_kind='" + dismissalKind + '\'' +
-                        ", fielder='" + fielder + '\'' +
-                        '}';
-        }
 }
