@@ -119,7 +119,7 @@ public class Main {
     }
 
     private static void findTheMostEconomicalBowlerIn2015
-            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+            (List<Match> matches, List<Delivery> deliveries) {
 
         List<Integer> match = findIdOfMatchesOfYear(matches, 2015);
         HashMap<String, Bowler> hashMap = new HashMap<>();
@@ -153,7 +153,7 @@ public class Main {
             }
         }
 
-        HashMap<String, Double> economy_map = new HashMap<>();
+        HashMap<String, Double> economicValMap = new HashMap<>();
 
         Double economicValue = 0.0;
         Set<Map.Entry<String, Bowler>> setHashMap = hashMap.entrySet();
@@ -167,9 +167,9 @@ public class Main {
             bowler_obj = entryHashMap.getValue();
 
             economicValue = (bowler_obj.getTotalRun() / (bowler_obj.getBalls() / 6d));
-            economy_map.put(entryHashMap.getKey(), economicValue);
+            economicValMap.put(entryHashMap.getKey(), economicValue);
         }
-        System.out.println(economy_map);
+        System.out.println(economicValMap);
     }
 
     private static void findLegbyeRunsConcededPerTeamin2013
