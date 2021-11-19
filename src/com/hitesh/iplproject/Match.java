@@ -165,28 +165,4 @@ public class Match {
           this.umpire3 = umpire3;
      }
 
-
-     @Override
-     public String toString() {
-          return "Matches{" +
-                  "id=" + id +
-                  ", season=" + season +
-                  ", city='" + city + '\'' +
-                  ", date='" + date + '\'' +
-                  ", team1='" + team1 + '\'' +
-                  ", team2='" + team2 + '\'' +
-                  ", toss_winner='" + tossWinner + '\'' +
-                  ", toss_decision='" + tossDecision + '\'' +
-                  ", result='" + result + '\'' +
-                  ", dl_applied=" + dlApplied +
-                  ", winner='" + winner + '\'' +
-                  ", win_by_runs=" + winByRuns +
-                  ", win_by_wickets=" + winByWickets +
-                  ", player_of_match='" + playerOfMatch + '\'' +
-                  ", venue='" + venue + '\'' +
-                  ", umpire1='" + umpire1 + '\'' +
-                  ", umpire2='" + umpire2 + '\'' +
-                  ", umpire3='" + umpire3 + '\'' +
-                  '}';
-     }
 }
