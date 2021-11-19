@@ -173,7 +173,7 @@ public class Main {
     }
 
     private static void findLegbyeRunsConcededPerTeamin2013
-            (HashMap<Integer, Match> matches, ArrayList<Delivery> deliveries) {
+            (List<Match> matches, List<Delivery> deliveries) {
         List<Integer> matchesIdList = findIdOfMatchesOfYear(matches, 2013);
 
         Iterator<Delivery> itrList = null;
