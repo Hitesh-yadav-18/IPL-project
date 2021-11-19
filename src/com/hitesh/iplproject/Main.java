@@ -207,7 +207,7 @@ public class Main {
 
     public static List<Delivery> getDeliveriesData() throws IOException {
         String line = "";
-        String[] columns = null;
+        String[] data = null;
         List<Delivery> deliveries = new ArrayList<>();
         BufferedReader bufferedReader =
                 new BufferedReader(new FileReader("src/com/hitesh/iplproject/Datasource/deliveries.csv"));
@@ -215,32 +215,32 @@ public class Main {
         bufferedReader.readLine();
 
         while ((line = bufferedReader.readLine()) != null) {
-            columns = line.split(",");
+            data = line.split(",");
             Delivery del_obj = new Delivery();
-            del_obj.setMatchId(Integer.parseInt(columns[MATCH_ID]));
-            del_obj.setInning(Integer.parseInt(columns[INNING]));
-            del_obj.setBattingTeam(columns[BATTING_TEAM]);
-            del_obj.setBowlingTeam(columns[BOWLING_TEAM]);
-            del_obj.setOver(Integer.parseInt(columns[OVER]));
-            del_obj.setBall(Integer.parseInt(columns[BALL]));
-            del_obj.setBatsman(columns[BATSMAN]);
-            del_obj.setNonStriker(columns[NON_STRIKER]);
-            del_obj.setBowler(columns[BOWLER]);
-            del_obj.setIsSuperOver(Integer.parseInt(columns[IS_SUPER_OVER]));
-            del_obj.setWideRuns(Integer.parseInt(columns[WIDE_RUNS]));
-            del_obj.setByeRuns(Integer.parseInt(columns[BYE_RUNS]));
-            del_obj.setLegbyeRuns(Integer.parseInt(columns[LEGBYE_RUNS]));
-            del_obj.setNoballRuns(Integer.parseInt(columns[NO_BALL_RUNS]));
-            del_obj.setPaneltyRuns(Integer.parseInt(columns[PANELTY_RUNS]));
-            del_obj.setBatsmanRuns(Integer.parseInt(columns[BATSMAN_RUNS]));
-            del_obj.setExtraRuns(Integer.parseInt(columns[EXTRA_RUNS]));
-            del_obj.setTotalRuns(Integer.parseInt(columns[TOTAL_RUNS]));
-            if (columns.length > 18)
-                del_obj.setPlayerDismissed(columns[PLAYER_DISMISSED]);
-            if (columns.length > 19)
-                del_obj.setDismissalKind(columns[DISMISSAL_KIND]);
-            if (columns.length > 20)
-                del_obj.setFielder(columns[FIELDER]);
+            del_obj.setMatchId(Integer.parseInt(data[MATCH_ID]));
+            del_obj.setInning(Integer.parseInt(data[INNING]));
+            del_obj.setBattingTeam(data[BATTING_TEAM]);
+            del_obj.setBowlingTeam(data[BOWLING_TEAM]);
+            del_obj.setOver(Integer.parseInt(data[OVER]));
+            del_obj.setBall(Integer.parseInt(data[BALL]));
+            del_obj.setBatsman(data[BATSMAN]);
+            del_obj.setNonStriker(data[NON_STRIKER]);
+            del_obj.setBowler(data[BOWLER]);
+            del_obj.setIsSuperOver(Integer.parseInt(data[IS_SUPER_OVER]));
+            del_obj.setWideRuns(Integer.parseInt(data[WIDE_RUNS]));
+            del_obj.setByeRuns(Integer.parseInt(data[BYE_RUNS]));
+            del_obj.setLegbyeRuns(Integer.parseInt(data[LEGBYE_RUNS]));
+            del_obj.setNoballRuns(Integer.parseInt(data[NO_BALL_RUNS]));
+            del_obj.setPaneltyRuns(Integer.parseInt(data[PANELTY_RUNS]));
+            del_obj.setBatsmanRuns(Integer.parseInt(data[BATSMAN_RUNS]));
+            del_obj.setExtraRuns(Integer.parseInt(data[EXTRA_RUNS]));
+            del_obj.setTotalRuns(Integer.parseInt(data[TOTAL_RUNS]));
+            if (data.length > 18)
+                del_obj.setPlayerDismissed(data[PLAYER_DISMISSED]);
+            if (data.length > 19)
+                del_obj.setDismissalKind(data[DISMISSAL_KIND]);
+            if (data.length > 20)
+                del_obj.setFielder(data[FIELDER]);
 
             deliveries.add(del_obj);
         }
